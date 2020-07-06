@@ -5,13 +5,14 @@ echo @latest-stable http://nl.alpinelinux.org/alpine/latest-stable/community >> 
 echo @latest-stable http://nl.alpinelinux.org/alpine/latest-stable/main >> /etc/apk/repositories && \
 apk --no-cache add chromium\
  chromium-chromedriver \
- firefox \
+ tzdata \
  xvfb
 
+ENV TZ=Asia/Bangkok
 COPY requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN adduser -S robot -G root
+#RUN adduser -S robot -G root
 #RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
 #apt install ./google-chrome-stable_current_amd64.deb; apt-get install --fix-broken -y install
 
@@ -20,18 +21,18 @@ RUN adduser -S robot -G root
 #    unzip -qq /tmp/chromedriver_linux64.zip -d /opt/chromedriver && \
 #    chmod +x /opt/chromedriver/chromedriver && \
 #    ln -fs /opt/chromedriver/chromedriver /usr/local/bin/chromedriver
-#COPY /tests/*.robot tests/
-#COPY ./run_tests.sh run_tests.sh
+COPY tests/*.robot tests/
+COPY ./run_tests.sh run_tests.sh
 
 
 ENV CHROME_BIN=/usr/bin/chromiun-browser \
     CHROME_PATH=/usr/lib/chromium
 
-RUN mkdir /tests
-RUN mkdir /app
+#RUN mkdir /tests
+#RUN mkdir /app
 
-RUN chown robot:root /tests
-RUN chown robot:root /app
+#RUN chown robot:root /tests
+#RUN chown robot:root /app
 
 #USER robot
-CMD ["sh","app/run_tests.sh"]
+CMD ["sh","./run_tests.sh"]

@@ -4,7 +4,7 @@ Library     RequestsLibrary
 
 *** Variables ***
 ${Session_name}     test
-${URL}      http://52.221.221.222:9080
+${URL}      http://python-api:9000
 
 *** Keywords ***
 Open Session

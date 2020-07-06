@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.7.8 on linux)" generated="20200706 10:59:15.368" rpa="false">
+<suite id="s1" name="Tests" source="/tests">
+<suite id="s1-s1" name="Api-Test" source="/tests/api-test.robot">
+<test id="s1-s1-t1" name="Test root path">
+<kw name="Open Session">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.765" level="INFO">Creating Session using : alias=test, url=http://python-api:9000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200706 10:59:15.764" endtime="20200706 10:59:15.765"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.763" endtime="20200706 10:59:15.765"></status>
+</kw>
+<kw name="Get">
+<arguments>
+<arg>/</arg>
+<arg>200</arg>
+</arguments>
+<assign>
+<var>${msg}</var>
+</assign>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${uri}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.799" level="INFO">GET Request : url=http://python-api:9000/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20200706 10:59:15.799" level="INFO">GET Response : url=http://python-api:9000/ 
+ status=200, reason=OK 
+ body=
+	&lt;h1&gt;Hello welcome to the site&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;Timestamp: 2020-07-06 10:59:15.796423&lt;/p&gt;
+	 
+ </msg>
+<msg timestamp="20200706 10:59:15.799" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200706 10:59:15.766" endtime="20200706 10:59:15.799"></status>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<doc>Fails if response status code is different than the expected.</doc>
+<arguments>
+<arg>${resp_code}</arg>
+<arg>${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.799" endtime="20200706 10:59:15.800"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.800" endtime="20200706 10:59:15.802"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.802" level="INFO">${resp_msg} = 
+	&lt;h1&gt;Hello welcome to the site&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;Timestamp: 2020-07-06 10:59:15.796423&lt;/p&gt;
+	</msg>
+<status status="PASS" starttime="20200706 10:59:15.802" endtime="20200706 10:59:15.802"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.803" level="INFO">
+	&lt;h1&gt;Hello welcome to the site&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;Timestamp: 2020-07-06 10:59:15.796423&lt;/p&gt;
+	</msg>
+<status status="PASS" starttime="20200706 10:59:15.803" endtime="20200706 10:59:15.803"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.803" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20200706 10:59:15.803" endtime="20200706 10:59:15.804"></status>
+</kw>
+<msg timestamp="20200706 10:59:15.804" level="INFO">${msg} = 
+	&lt;h1&gt;Hello welcome to the site&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;Timestamp: 2020-07-06 10:59:15.796423&lt;/p&gt;
+	</msg>
+<status status="PASS" starttime="20200706 10:59:15.766" endtime="20200706 10:59:15.804"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${msg}</arg>
+<arg>Hello welcome to the site</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.804" endtime="20200706 10:59:15.805"></status>
+</kw>
+<kw name="Get Time" library="BuiltIn">
+<doc>Returns the given time in the requested format.</doc>
+<assign>
+<var>${timenow}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.805" level="INFO">${timenow} = 2020-07-06 10:59:15</msg>
+<status status="PASS" starttime="20200706 10:59:15.805" endtime="20200706 10:59:15.806"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${msg}</arg>
+<arg>${timenow}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.806" endtime="20200706 10:59:15.806"></status>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20200706 10:59:15.807" level="INFO">Delete All Sessions</msg>
+<status status="PASS" starttime="20200706 10:59:15.807" endtime="20200706 10:59:15.807"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.762" endtime="20200706 10:59:15.807" critical="yes"></status>
+</test>
+<test id="s1-s1-t2" name="Test add_info">
+<kw name="Open Session">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.811" level="INFO">Creating Session using : alias=test, url=http://python-api:9000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200706 10:59:15.810" endtime="20200706 10:59:15.811"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.810" endtime="20200706 10:59:15.811"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>id</arg>
+<arg>1</arg>
+<arg>firstname</arg>
+<arg>Build</arg>
+<arg>lastname</arg>
+<arg>ione</arg>
+<arg>age</arg>
+<arg>12345</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.812" level="INFO">${data} = {'id': '1', 'firstname': 'Build', 'lastname': 'ione', 'age': '12345'}</msg>
+<status status="PASS" starttime="20200706 10:59:15.812" endtime="20200706 10:59:15.812"></status>
+</kw>
+<kw name="Post">
+<arguments>
+<arg>/add_info</arg>
+<arg>${data}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type</arg>
+<arg>application/json</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.813" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200706 10:59:15.813" endtime="20200706 10:59:15.813"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.814" level="INFO">{'id': '1', 'firstname': 'Build', 'lastname': 'ione', 'age': '12345'}</msg>
+<status status="PASS" starttime="20200706 10:59:15.814" endtime="20200706 10:59:15.814"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>/add_info</arg>
+<arg>headers=${header}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.969" level="INFO">POST Request : url=http://python-api:9000/add_info 
+ path_url=/add_info 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '69'} 
+ body={"id": "1", "firstname": "Build", "lastname": "ione", "age": "12345"} 
+ </msg>
+<msg timestamp="20200706 10:59:15.970" level="INFO">POST Response : url=http://python-api:9000/add_info 
+ status=200, reason=OK 
+ body=Personal info added 
+ </msg>
+<msg timestamp="20200706 10:59:15.970" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200706 10:59:15.814" endtime="20200706 10:59:15.970"></status>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<doc>Fails if response status code is different than the expected.</doc>
+<arguments>
+<arg>200</arg>
+<arg>${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.970" endtime="20200706 10:59:15.970"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.971" level="INFO">${resp_msg} = Personal info added</msg>
+<status status="PASS" starttime="20200706 10:59:15.971" endtime="20200706 10:59:15.971"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.971" level="INFO">Personal info added</msg>
+<status status="PASS" starttime="20200706 10:59:15.971" endtime="20200706 10:59:15.972"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.972" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20200706 10:59:15.972" endtime="20200706 10:59:15.972"></status>
+</kw>
+<msg timestamp="20200706 10:59:15.972" level="INFO">${resp_msg} = Personal info added</msg>
+<status status="PASS" starttime="20200706 10:59:15.812" endtime="20200706 10:59:15.972"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>Personal info added</arg>
+<arg>${resp_msg}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.973" endtime="20200706 10:59:15.974"></status>
+</kw>
+<kw name="Delete All Sessions" library="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<msg timestamp="20200706 10:59:15.974" level="INFO">Delete All Sessions</msg>
+<status status="PASS" starttime="20200706 10:59:15.974" endtime="20200706 10:59:15.974"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.809" endtime="20200706 10:59:15.975" critical="yes"></status>
+</test>
+<test id="s1-s1-t3" name="Test Get info success">
+<kw name="Open Session">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.979" level="INFO">Creating Session using : alias=test, url=http://python-api:9000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200706 10:59:15.978" endtime="20200706 10:59:15.979"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.978" endtime="20200706 10:59:15.979"></status>
+</kw>
+<kw name="Get">
+<arguments>
+<arg>/person/1</arg>
+<arg>200</arg>
+</arguments>
+<assign>
+<var>${msg}</var>
+</assign>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${uri}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.985" level="INFO">GET Request : url=http://python-api:9000/person/1 
+ path_url=/person/1 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20200706 10:59:15.985" level="INFO">GET Response : url=http://python-api:9000/person/1 
+ status=200, reason=OK 
+ body=
+        &lt;h1&gt;Record FOUND!!&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;ID: 1&lt;br&gt;
+        firstname: Build&lt;br&gt;
+        lastname: ione&lt;br&gt;
+        age: 12345&lt;br&gt;&lt;/p&gt;
+         
+ </msg>
+<msg timestamp="20200706 10:59:15.985" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200706 10:59:15.980" endtime="20200706 10:59:15.985"></status>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<doc>Fails if response status code is different than the expected.</doc>
+<arguments>
+<arg>${resp_code}</arg>
+<arg>${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.985" endtime="20200706 10:59:15.986"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.986" endtime="20200706 10:59:15.988"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.989" level="INFO">${resp_msg} = 
+        &lt;h1&gt;Record FOUND!!&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;ID: 1&lt;br&gt;
+        firstname: Build&lt;br&gt;
+        lastname: ione&lt;br&gt;
+        age: 12345&lt;br&gt;&lt;/p&gt;
+        </msg>
+<status status="PASS" starttime="20200706 10:59:15.988" endtime="20200706 10:59:15.989"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.989" level="INFO">
+        &lt;h1&gt;Record FOUND!!&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;ID: 1&lt;br&gt;
+        firstname: Build&lt;br&gt;
+        lastname: ione&lt;br&gt;
+        age: 12345&lt;br&gt;&lt;/p&gt;
+        </msg>
+<status status="PASS" starttime="20200706 10:59:15.989" endtime="20200706 10:59:15.989"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.990" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20200706 10:59:15.989" endtime="20200706 10:59:15.990"></status>
+</kw>
+<msg timestamp="20200706 10:59:15.990" level="INFO">${msg} = 
+        &lt;h1&gt;Record FOUND!!&lt;/h1&gt;&lt;br&gt;
+        &lt;p&gt;ID: 1&lt;br&gt;
+        firstname: Build&lt;br&gt;
+        lastname: ione&lt;br&gt;
+        age: 12345&lt;br&gt;&lt;/p&gt;
+        </msg>
+<status status="PASS" starttime="20200706 10:59:15.980" endtime="20200706 10:59:15.990"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${msg}</arg>
+<arg>Record FOUND!!</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:15.990" endtime="20200706 10:59:15.991"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.977" endtime="20200706 10:59:15.991" critical="yes"></status>
+</test>
+<test id="s1-s1-t4" name="Test update">
+<kw name="Open Session">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.994" level="INFO">Creating Session using : alias=test, url=http://python-api:9000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200706 10:59:15.994" endtime="20200706 10:59:15.994"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.994" endtime="20200706 10:59:15.995"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>id</arg>
+<arg>1</arg>
+<arg>firstname</arg>
+<arg>Supakarn</arg>
+<arg>lastname</arg>
+<arg>J.</arg>
+<arg>age</arg>
+<arg>24</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.995" level="INFO">${data} = {'id': '1', 'firstname': 'Supakarn', 'lastname': 'J.', 'age': '24'}</msg>
+<status status="PASS" starttime="20200706 10:59:15.995" endtime="20200706 10:59:15.996"></status>
+</kw>
+<kw name="Post">
+<arguments>
+<arg>/add_info</arg>
+<arg>${data}</arg>
+</arguments>
+<assign>
+<var>${msg}</var>
+</assign>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type</arg>
+<arg>application/json</arg>
+</arguments>
+<assign>
+<var>${header}</var>
+</assign>
+<msg timestamp="20200706 10:59:15.997" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20200706 10:59:15.996" endtime="20200706 10:59:15.997"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:15.997" level="INFO">{'id': '1', 'firstname': 'Supakarn', 'lastname': 'J.', 'age': '24'}</msg>
+<status status="PASS" starttime="20200706 10:59:15.997" endtime="20200706 10:59:15.997"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>/add_info</arg>
+<arg>headers=${header}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.007" level="INFO">POST Request : url=http://python-api:9000/add_info 
+ path_url=/add_info 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '67'} 
+ body={"id": "1", "firstname": "Supakarn", "lastname": "J.", "age": "24"} 
+ </msg>
+<msg timestamp="20200706 10:59:16.007" level="INFO">POST Response : url=http://python-api:9000/add_info 
+ status=200, reason=OK 
+ body=Personal info updated 
+ </msg>
+<msg timestamp="20200706 10:59:16.007" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200706 10:59:15.997" endtime="20200706 10:59:16.007"></status>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<doc>Fails if response status code is different than the expected.</doc>
+<arguments>
+<arg>200</arg>
+<arg>${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.008" endtime="20200706 10:59:16.008"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.009" level="INFO">${resp_msg} = Personal info updated</msg>
+<status status="PASS" starttime="20200706 10:59:16.008" endtime="20200706 10:59:16.009"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.009" level="INFO">Personal info updated</msg>
+<status status="PASS" starttime="20200706 10:59:16.009" endtime="20200706 10:59:16.009"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.009" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20200706 10:59:16.009" endtime="20200706 10:59:16.009"></status>
+</kw>
+<msg timestamp="20200706 10:59:16.010" level="INFO">${msg} = Personal info updated</msg>
+<status status="PASS" starttime="20200706 10:59:15.996" endtime="20200706 10:59:16.010"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>Personal info updated</arg>
+<arg>${msg}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.010" endtime="20200706 10:59:16.010"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:15.993" endtime="20200706 10:59:16.011" critical="yes"></status>
+</test>
+<test id="s1-s1-t5" name="Test delete success">
+<kw name="Open Session">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.014" level="INFO">Creating Session using : alias=test, url=http://python-api:9000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200706 10:59:16.014" endtime="20200706 10:59:16.014"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:16.013" endtime="20200706 10:59:16.014"></status>
+</kw>
+<kw name="Get">
+<arguments>
+<arg>/delete/1</arg>
+<arg>200</arg>
+</arguments>
+<assign>
+<var>${msg}</var>
+</assign>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${uri}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.021" level="INFO">GET Request : url=http://python-api:9000/delete/1 
+ path_url=/delete/1 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20200706 10:59:16.021" level="INFO">GET Response : url=http://python-api:9000/delete/1 
+ status=200, reason=OK 
+ body=Personal info removed 
+ </msg>
+<msg timestamp="20200706 10:59:16.021" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200706 10:59:16.015" endtime="20200706 10:59:16.021"></status>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<doc>Fails if response status code is different than the expected.</doc>
+<arguments>
+<arg>${resp_code}</arg>
+<arg>${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.022" endtime="20200706 10:59:16.022"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.022" endtime="20200706 10:59:16.023"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.024" level="INFO">${resp_msg} = Personal info removed</msg>
+<status status="PASS" starttime="20200706 10:59:16.023" endtime="20200706 10:59:16.024"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.024" level="INFO">Personal info removed</msg>
+<status status="PASS" starttime="20200706 10:59:16.024" endtime="20200706 10:59:16.024"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.025" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20200706 10:59:16.025" endtime="20200706 10:59:16.025"></status>
+</kw>
+<msg timestamp="20200706 10:59:16.025" level="INFO">${msg} = Personal info removed</msg>
+<status status="PASS" starttime="20200706 10:59:16.015" endtime="20200706 10:59:16.025"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>Personal info removed</arg>
+<arg>${msg}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.026" endtime="20200706 10:59:16.026"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:16.013" endtime="20200706 10:59:16.026" critical="yes"></status>
+</test>
+<test id="s1-s1-t6" name="TestGet info fail">
+<kw name="Open Session">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.030" level="INFO">Creating Session using : alias=test, url=http://python-api:9000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200706 10:59:16.029" endtime="20200706 10:59:16.030"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:16.029" endtime="20200706 10:59:16.030"></status>
+</kw>
+<kw name="Get">
+<arguments>
+<arg>/person/1</arg>
+<arg>200</arg>
+</arguments>
+<assign>
+<var>${msg}</var>
+</assign>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${uri}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.036" level="INFO">GET Request : url=http://python-api:9000/person/1 
+ path_url=/person/1 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20200706 10:59:16.036" level="INFO">GET Response : url=http://python-api:9000/person/1 
+ status=200, reason=OK 
+ body=Record not found 
+ </msg>
+<msg timestamp="20200706 10:59:16.036" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200706 10:59:16.031" endtime="20200706 10:59:16.036"></status>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<doc>Fails if response status code is different than the expected.</doc>
+<arguments>
+<arg>${resp_code}</arg>
+<arg>${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.036" endtime="20200706 10:59:16.037"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.037" endtime="20200706 10:59:16.037"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.038" level="INFO">${resp_msg} = Record not found</msg>
+<status status="PASS" starttime="20200706 10:59:16.038" endtime="20200706 10:59:16.038"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.038" level="INFO">Record not found</msg>
+<status status="PASS" starttime="20200706 10:59:16.038" endtime="20200706 10:59:16.038"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.039" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20200706 10:59:16.039" endtime="20200706 10:59:16.039"></status>
+</kw>
+<msg timestamp="20200706 10:59:16.039" level="INFO">${msg} = Record not found</msg>
+<status status="PASS" starttime="20200706 10:59:16.030" endtime="20200706 10:59:16.039"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>Record not found</arg>
+<arg>${msg}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.040" endtime="20200706 10:59:16.040"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:16.028" endtime="20200706 10:59:16.040" critical="yes"></status>
+</test>
+<test id="s1-s1-t7" name="Test delete fail">
+<kw name="Open Session">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${URL}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.044" level="INFO">Creating Session using : alias=test, url=http://python-api:9000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200706 10:59:16.043" endtime="20200706 10:59:16.044"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:16.043" endtime="20200706 10:59:16.044"></status>
+</kw>
+<kw name="Get">
+<arguments>
+<arg>/delete/1</arg>
+<arg>400</arg>
+</arguments>
+<assign>
+<var>${msg}</var>
+</assign>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>${Session_name}</arg>
+<arg>${uri}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.049" level="INFO">GET Request : url=http://python-api:9000/delete/1 
+ path_url=/delete/1 
+ headers={'User-Agent': 'python-requests/2.24.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20200706 10:59:16.049" level="INFO">GET Response : url=http://python-api:9000/delete/1 
+ status=400, reason=BAD REQUEST 
+ body=Invalid id 
+ </msg>
+<msg timestamp="20200706 10:59:16.049" level="INFO">${resp} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20200706 10:59:16.045" endtime="20200706 10:59:16.049"></status>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<doc>Fails if response status code is different than the expected.</doc>
+<arguments>
+<arg>${resp_code}</arg>
+<arg>${resp}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.049" endtime="20200706 10:59:16.050"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.050" endtime="20200706 10:59:16.051"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.content}</arg>
+</arguments>
+<assign>
+<var>${resp_msg}</var>
+</assign>
+<msg timestamp="20200706 10:59:16.051" level="INFO">${resp_msg} = Invalid id</msg>
+<status status="PASS" starttime="20200706 10:59:16.051" endtime="20200706 10:59:16.051"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.052" level="INFO">Invalid id</msg>
+<status status="PASS" starttime="20200706 10:59:16.051" endtime="20200706 10:59:16.052"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${resp_msg}</arg>
+</arguments>
+<msg timestamp="20200706 10:59:16.052" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20200706 10:59:16.052" endtime="20200706 10:59:16.052"></status>
+</kw>
+<msg timestamp="20200706 10:59:16.052" level="INFO">${msg} = Invalid id</msg>
+<status status="PASS" starttime="20200706 10:59:16.044" endtime="20200706 10:59:16.052"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>Invalid id</arg>
+<arg>${msg}</arg>
+</arguments>
+<status status="PASS" starttime="20200706 10:59:16.053" endtime="20200706 10:59:16.053"></status>
+</kw>
+<status status="PASS" starttime="20200706 10:59:16.042" endtime="20200706 10:59:16.053" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200706 10:59:15.402" endtime="20200706 10:59:16.055"></status>
+</suite>
+<status status="PASS" starttime="20200706 10:59:15.369" endtime="20200706 10:59:16.059"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="0">Critical Tests</stat>
+<stat pass="7" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="7" fail="0" id="s1" name="Tests">Tests</stat>
+<stat pass="7" fail="0" id="s1-s1" name="Api-Test">Tests.Api-Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
