@@ -1,4 +1,16 @@
-FROM base_robot:latest
+FROM python:3.7.8-alpine3.12
+RUN apk upgrade && \
+apk update && \
+echo @latest-stable http://nl.alpinelinux.org/alpine/latest-stable/community >> /etc/apk/repositories && \
+echo @latest-stable http://nl.alpinelinux.org/alpine/latest-stable/main >> /etc/apk/repositories && \
+apk --no-cache add chromium\
+ chromium-chromedriver \
+ tzdata \
+ xvfb
+
+ENV TZ=Asia/Bangkok
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
 
 #RUN adduser -S robot -G root
 #RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
@@ -9,12 +21,12 @@ FROM base_robot:latest
 #    unzip -qq /tmp/chromedriver_linux64.zip -d /opt/chromedriver && \
 #    chmod +x /opt/chromedriver/chromedriver && \
 #    ln -fs /opt/chromedriver/chromedriver /usr/local/bin/chromedriver
-COPY tests/*.robot tests/
-COPY ./run_tests.sh run_tests.sh
+#COPY tests/*.robot tests/
+#COPY ./run_tests.sh run_tests.sh
 
 
-ENV CHROME_BIN=/usr/bin/chromiun-browser \
-    CHROME_PATH=/usr/lib/chromium
+#ENV CHROME_BIN=/usr/bin/chromiun-browser \
+#    CHROME_PATH=/usr/lib/chromium
 
 #RUN mkdir /tests
 #RUN mkdir /app
