@@ -1,1 +1,1 @@
-this is a folder for test scripts and results
+this is a folder for test results
