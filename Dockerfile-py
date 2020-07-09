@@ -1,14 +1,5 @@
 FROM base_robot:latest
 
-#RUN adduser -S robot -G root
-#RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-#apt install ./google-chrome-stable_current_amd64.deb; apt-get install --fix-broken -y install
-
-#RUN CHROMEDRIVER_VERSION=`wget --no-verbose --output-document - https://chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
-#    wget --no-verbose --output-document /tmp/chromedriver_linux64.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip && \
-#    unzip -qq /tmp/chromedriver_linux64.zip -d /opt/chromedriver && \
-#    chmod +x /opt/chromedriver/chromedriver && \
-#    ln -fs /opt/chromedriver/chromedriver /usr/local/bin/chromedriver
 COPY tests/*.robot tests/
 COPY ./run_tests.sh run_tests.sh
 
@@ -16,11 +7,4 @@ COPY ./run_tests.sh run_tests.sh
 ENV CHROME_BIN=/usr/bin/chromiun-browser \
     CHROME_PATH=/usr/lib/chromium
 
-#RUN mkdir /tests
-#RUN mkdir /app
-
-#RUN chown robot:root /tests
-#RUN chown robot:root /app
-
-#USER robot
 CMD ["sh","./run_tests.sh"]
