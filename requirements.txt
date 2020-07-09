@@ -1,11 +1,3 @@
 robotframework
 robotframework-selenium2library
-robotframework-appiumlibrary
-robotframework-browsermobproxylibrary
-robotframework-databaselibrary
-robotframework-imaplibrary
 robotframework-requests
-robotframework-seleniumlibrary
-robotframeworklexer
-browsermob-proxy
-Appium-Python-Client
